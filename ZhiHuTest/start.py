@@ -1,6 +1,8 @@
 #-*- coding: utf-8 -*-
-__author__ = 'dengzihong'
+__author__ = 'vmture'
+import time
 import os
+import HTMLTestRunner
 from appium import webdriver
 from time import sleep
 import unittest
@@ -50,10 +52,18 @@ class ZhihuTest(unittest.TestCase):
 
         a6 = self.driver.find_element_by_id("com.zhihu.android:id/input")
         self.assertEqual('搜索话题、问题或人',(a6.text).encode("UTF-8"))
-        print('登录成功')
+        print(u'登录成功')
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(ZhihuTest)
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    # suite = unittest.TestLoader().loadTestsFromTestCase(ZhihuTest)
+    # unittest.TextTestRunner(verbosity=2).run(suite)
     # unittest.main()
-
+    # testunit = unittest.makeSuite(ZhihuTest)
+    testunit = unittest.TestSuite()
+    testunit.addTest(ZhihuTest('test1'))
+    time = time.strftime('%Y_%m_%d_%H_%M',time.localtime(time.time()))
+    html = time+'.html'
+    filename = 'C:\\Users\\dengzihong.ZENMEN\\AutoVTest\\ZhiHuTest\\report\\test_report'+html
+    fp = file(filename,'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title='test_report',description='Report_description')
+    runner.run(testunit)

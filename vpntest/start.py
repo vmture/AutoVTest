@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__author__ = 'dengzihong'
+__author__ = 'vmture'
 #from selenium.webdriver.firefox.webdriver import WebDriver
 # from selenium.webdriver.common.action_chains import ActionChains
 import os

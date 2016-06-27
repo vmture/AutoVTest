@@ -1,4 +1,4 @@
-__author__ = 'dengzihong'
+__author__ = 'vmture'
 m2note={
     'platformName':'Android',
     'platformVersion':'5.1',

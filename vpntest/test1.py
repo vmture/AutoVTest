@@ -1,4 +1,4 @@
-__author__ = 'dengzihong'
+__author__ = 'vmture'
 import start
 from time import sleep
 import device

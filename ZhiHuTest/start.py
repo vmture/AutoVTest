@@ -1,15 +1,18 @@
 #-*- coding: utf-8 -*-
 __author__ = 'vmture'
 import time
+from time import sleep
 import os
 import HTMLTestRunner
 import devices
 from appium import webdriver
-from time import sleep
+from Appium import StartAppium
 import unittest
 class ZhihuTest(unittest.TestCase):
     def setUp(self):
-        desired_caps={}
+        startappium = StartAppium()
+        startappium.cmd_start()
+        desired_caps = {}
         desired_caps.update(devices.Emulator)
         # desired_caps['platformName'] = 'Android'
         # desired_caps['platformVersion'] = '4.4.4'
@@ -21,6 +24,8 @@ class ZhihuTest(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
+        startappium = StartAppium()
+        startappium.cmd_stop()
 
     def test1(self):
         sleep(5)
@@ -35,6 +40,15 @@ class ZhihuTest(unittest.TestCase):
         sleep(5)
 
     def test2(self):
+        sleep(5)
+        self.driver.swipe(900, 960, 100, 960, 500)
+        sleep(5)
+        self.driver.swipe(900, 960, 100, 960, 500)
+
+        a1 = self.driver.find_element_by_id("com.zhihu.android:id/login_btn")
+        a1.click()
+        sleep(5)
+
         a2 = self.driver.find_element_by_id("com.zhihu.android:id/title")
         self.assertEqual('登录',(a2.text).encode("UTF-8"))
 
@@ -56,11 +70,8 @@ class ZhihuTest(unittest.TestCase):
 
         a6 = self.driver.find_element_by_id("com.zhihu.android:id/input")
         self.assertEqual('搜索话题、问题或人',(a6.text).encode("UTF-8"))
-        print(u'登录成功')
+        print(u'\n登录成功')
 
-    def login(self):
-        ZhihuTest.test1(self)
-        ZhihuTest.test2(self)
 
 if __name__ == '__main__':
     # suite = unittest.TestLoader().loadTestsFromTestCase(ZhihuTest)
@@ -71,8 +82,10 @@ if __name__ == '__main__':
     html = time+'.html'
     filename = 'C:\\Users\\dengzihong.ZENMEN\\AutoVTest\\ZhiHuTest\\report\\test_report'+html
     fp = file(filename,'wb')
-
+    # all = [ZhihuTest.test1(),]
     testunit = unittest.TestSuite()
-    testunit.addTest(ZhihuTest('login'))
+    testunit.addTest(ZhihuTest('test1'))
+    testunit.addTest(ZhihuTest('test2'))
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title='test_report',description=u'用例执行情况：')
     runner.run(testunit)
+    fp.close()

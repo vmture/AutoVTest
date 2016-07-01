@@ -39,11 +39,13 @@ __author__ = 'vmture'
 import subprocess
 import time
 class StartAppium():
-    def cmd_start(self):
+    @staticmethod
+    def cmd_start():
         subprocess.Popen('cmd /k start /b appium')
         time.sleep(5)
 
-    def cmd_stop(self):
+    @staticmethod
+    def cmd_stop():
         subprocess.Popen('taskkill /f /im node.exe')
         time.sleep(5)
 

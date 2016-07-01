@@ -10,8 +10,7 @@ from Appium import StartAppium
 import unittest
 class ZhihuTest(unittest.TestCase):
     def setUp(self):
-        startappium = StartAppium()
-        startappium.cmd_start()
+        StartAppium.cmd_start()
         desired_caps = {}
         desired_caps.update(devices.Emulator)
         # desired_caps['platformName'] = 'Android'
@@ -24,8 +23,7 @@ class ZhihuTest(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
-        startappium = StartAppium()
-        startappium.cmd_stop()
+        StartAppium.cmd_stop()
 
     def test1(self):
         sleep(5)

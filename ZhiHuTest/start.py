@@ -59,9 +59,9 @@ class ZhihuTest(unittest.TestCase):
         a5 = self.driver.find_element_by_id('com.zhihu.android:id/btn_progress')
         self.assertEqual('登录',(a5.text).encode("UTF-8"))
 
-        self.driver.find_element_by_id('com.zhihu.android:id/username').send_keys('279577157@qq.com')
+        self.driver.find_element_by_id('com.zhihu.android:id/username').send_keys('*******')
         sleep(1)
-        self.driver.find_element_by_id('com.zhihu.android:id/password').send_keys('vmture123')
+        self.driver.find_element_by_id('com.zhihu.android:id/password').send_keys('*******')
         sleep(1)
         self.driver.find_element_by_id('com.zhihu.android:id/btn_progress').click()
         sleep(2)
